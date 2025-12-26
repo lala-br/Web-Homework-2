@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Flex Grid — Copilot</title>
+  <link rel="stylesheet" href="flex-Copilot.css">
+</head>
+<body>
+  <div class="container">
+    <h1 style="margin:0 0 18px 0; font-weight:700">Responsive 12-Column Grid — Flex</h1>
+    <p style="margin:0 0 24px 0; color:#6b7280">A compact, CSS-Grid based 12-column system using copilot. Resize the window (or open on mobile) to see columns stack.</p>
+
+    <!-- Simplified layout matching provided example image -->
+    <section class="grid" style="margin-bottom:16px">
+      <!-- left sidebar -->
+      <div class="col-2 card sidebar">Sidebar</div>
+
+      <!-- right content area -->
+      <div class="col-10 right-container">
+        <!-- top row: 4 equal boxes -->
+        <div class="right-top-4">
+          <div class="card">A</div>
+          <div class="card">B</div>
+          <div class="card">C</div>
+          <div class="card">D</div>
+        </div>
+
+        <!-- second row: stacked small boxes on the left, large box on the right -->
+        <div class="right-split">
+          <div class="stack">
+            <div class="card" style="min-height:36px">small 1</div>
+            <div class="card" style="min-height:36px">small 2</div>
+          </div>
+          <div class="card" style="min-height:120px">Large content area</div>
+        </div>
+
+        <!-- third row removed as requested -->
+
+        <!-- bottom row: two boxes side-by-side -->
+        <div class="right-bottom">
+          <div class="card" style="min-height:80px">Bottom left wide</div>
+          <div class="card" style="min-height:80px">Bottom right</div>
+        </div>
+      </div>
+    </section>
+
+    <footer style="margin-top:24px; color:#6b7280; font-size:14px">This layout uses a left sidebar and nested grids on the right to reproduce the example image. Resize below 750px to see stacking.</footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,100 @@
+/* Plain CSS (no flex/grid) 12-column layout using floats
+   - Works with existing grid.html
+   - Responsive: stacks under 750px
+   - Outer right container with inner cards; left sidebar matches visually on mobile
+*/
+:root{
+  --accent:#e11d48; /* red */
+  --card-bg:#f9fafb;
+  --muted:#6b7280;
+  --max-width:1200px;
+  --gap:16px; /* used for margins between inner cards on mobile */
+}
+*{box-sizing:border-box}
+body{margin:0;padding:24px;background:#f3f4f6;color:#111827;font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial}
+.container{max-width:var(--max-width);margin:0 auto;padding:0 16px}
+
+/* Row clearfix for .grid and other groups */
+.grid:after, .right-top-4:after, .right-split:after, .right-bottom:after{content:"";display:table;clear:both}
+
+/* Column widths (12-column) */
+.col-1{float:left;width:8.333333%}
+.col-2{float:left;width:16.666667%}
+.col-3{float:left;width:25%}
+.col-4{float:left;width:33.333333%}
+.col-5{float:left;width:41.666667%}
+.col-6{float:left;width:50%}
+.col-7{float:left;width:58.333333%}
+.col-8{float:left;width:66.666667%}
+.col-9{float:left;width:75%}
+.col-10{float:left;width:83.333333%}
+.col-11{float:left;width:91.666667%}
+.col-12{float:left;width:100%}
+
+/* Basic card visual (outer containers) */
+.card{display:block;background:var(--card-bg);border:2px solid var(--accent);min-height:60px;padding:12px;color:var(--muted);text-align:center;font-weight:600}
+.card.full{min-height:120px}
+
+/* Right container: outer box that wraps inner content */
+.right-container{background:var(--card-bg);border:2px solid var(--accent);padding:12px}
+/* Inner cards inside right container should have lighter border */
+.right-container .card{border:1px solid var(--accent);box-shadow:none;margin:0 0 var(--gap) 0}
+
+/* Top row: 4 equal boxes */
+.right-top-4 .card{float:left;width:25%;padding:12px;min-height:84px}
+
+/* Right split: left stack (33.33%) + right large box (66.66%) */
+.right-split .stack{float:left;width:33.333333%}
+.right-split .stack .card{margin:0 0 var(--gap) 0;padding:12px;min-height:34px}
+.right-split > .card{float:left;width:66.666667%;padding:12px;min-height:196px}
+
+/* Bottom row: two boxes 2fr/1fr */
+.right-bottom .card:first-child{float:left;width:66.666667%;padding:12px;min-height:100px}
+.right-bottom .card:last-child{float:left;width:33.333333%;padding:12px;min-height:100px}
+
+/* Ensure floats don't shrink container widths unexpectedly */
+[class*="col-"]{min-height:0}
+
+/* Responsive: stack everything under 750px */
+@media (max-width:750px){
+  /* make all columns full width */
+  .col-1,.col-2,.col-3,.col-4,.col-5,.col-6,.col-7,.col-8,.col-9,.col-10,.col-11,.col-12{float:none;width:100%}
+
+  /* Keep inner cards visually aligned but avoid side overflow by using horizontal inset spacing
+     Cards use box-sizing so padding/border won't cause overflow; widths account for horizontal gaps */
+  .right-container{padding:0}
+  .right-container .card{margin:0 12px 12px 12px;box-sizing:border-box;width:calc(100% - 24px)}
+
+  /* Stack top 4 vertically and match small boxes height (same as small 1/2) */
+  .right-top-4 .card{float:none;width:calc(100% - 24px);min-height:36px;margin:0 12px 12px 12px;padding:12px;box-sizing:border-box}
+
+  /* Right split becomes stacked: left stack then large box — all use same small height */
+  .right-split .stack{float:none;width:100%}
+  .right-split .stack .card{margin:0 12px 12px 12px;min-height:36px;padding:12px;box-sizing:border-box;width:calc(100% - 24px)}
+  .right-split > .card{float:none;width:calc(100% - 24px);margin:0 12px 12px 12px;min-height:36px;padding:12px;box-sizing:border-box}
+
+  /* Force large content and bottom boxes to match small1/small2 dimensions (override inline styles) */
+  .right-split > .card, .right-bottom .card {min-height:36px !important; width:calc(100% - 24px) !important}
+
+  /* bottom row stack — make both full-width and same small height */
+  .right-bottom .card{float:none;width:calc(100% - 24px);margin:0 12px 12px 12px;min-height:36px;padding:12px;box-sizing:border-box}
+
+  /* Make right container and sidebar full width and aligned */
+  .right-container{width:100%}
+  .sidebar{width:100%}
+}
+
+/* Desktop: use table layout to keep sidebar and right-container equal height without flex/grid
+   This preserves plain CSS (no flex), and avoids overflow for inner floats. */
+@media (min-width:751px){
+  .grid{display:table;width:100%}
+  .col-2,.col-10{float:none;display:table-cell;vertical-align:top}
+  /* ensure table-cell widths match the 12-col proportions */
+  .col-2{width:16.666667%}
+  .col-10{width:83.333333%}
+
+  /* remove extra padding side-effects for inner rows */
+  .right-top-4 .card{box-sizing:border-box}
+  .right-top-4 .card{width:25%}
+  .right-top-4{overflow:hidden}
+}

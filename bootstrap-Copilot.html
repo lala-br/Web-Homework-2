@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Bootstrap Grid — Copilot</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="bootstrap-Copilot.css">
+</head>
+<body class="bg-light">
+  <div class="container py-5">
+    <h1 class="mb-3 fw-bold">Responsive 12-Column Grid — Bootsrap</h1>
+    <p class="mb-4 text-muted">Bootstrap-powered responsive 12-column system using copilot. Resize the window (or open on mobile) to see columns stack.</p>
+
+    <!-- Simplified layout matching provided example image -->
+    <div class="row g-4 mb-4">
+      <!-- left sidebar -->
+      <div class="col-lg-2">
+        <div class="card card-custom h-100">Sidebar</div>
+      </div>
+
+      <!-- right content area -->
+      <div class="col-lg-10">
+        <!-- top row: 4 equal boxes -->
+        <div class="row g-3 mb-3">
+          <div class="col-lg-3 col-sm-6">
+            <div class="card card-custom">A</div>
+          </div>
+          <div class="col-lg-3 col-sm-6">
+            <div class="card card-custom">B</div>
+          </div>
+          <div class="col-lg-3 col-sm-6">
+            <div class="card card-custom">C</div>
+          </div>
+          <div class="col-lg-3 col-sm-6">
+            <div class="card card-custom">D</div>
+          </div>
+        </div>
+
+        <!-- second row: stacked small boxes on the left, large box on the right -->
+        <div class="row g-3 mb-3">
+          <div class="col-lg-4">
+            <div class="row g-3">
+              <div class="col-12">
+                <div class="card card-custom" style="min-height:36px">small 1</div>
+              </div>
+              <div class="col-12">
+                <div class="card card-custom" style="min-height:36px">small 2</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-8">
+            <div class="card card-custom" style="min-height:120px">Large content area</div>
+          </div>
+        </div>
+
+        <!-- bottom row: two boxes side-by-side -->
+        <div class="row g-3">
+          <div class="col-lg-8">
+            <div class="card card-custom" style="min-height:80px">Bottom left wide</div>
+          </div>
+          <div class="col-lg-4">
+            <div class="card card-custom" style="min-height:80px">Bottom right</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="mt-5 text-muted small">This layout uses Bootstrap's responsive grid with a left sidebar and nested rows on the right. Resize below 992px to see responsive stacking.</footer>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
